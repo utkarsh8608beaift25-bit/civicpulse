@@ -1,10 +1,17 @@
-function Hero(){
+import { Link } from "react-router-dom";
+
+function Hero({title, description}){
     return(
         <section>
-            <h1>Connecting Citizens. Improving Cities.</h1>
+            <h1>{title}</h1>
             <p>
-                Report civic issues and help build a cleaner, safer and smarter community.
+                {description}
             </p>
+
+            <div>
+                <Link to="/report">Report an issue</Link>
+                <Link to="/about">Learn More</Link>
+            </div>
         </section>
     )
 }
