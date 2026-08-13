@@ -2,6 +2,7 @@ import Hero from "../components/home/Hero";
 import WhyCivicPulse from "../components/home/WhyCivicPulse";
 import IssueCategories from "../components/home/IssueCategories";
 import CommunityStats from "../components/home/CommunityStats";
+import EmergencySection from "../components/home/EmergencySection";
 
 function Home(){
     return(
@@ -14,6 +15,7 @@ function Home(){
             <WhyCivicPulse />
             <IssueCategories />
             <CommunityStats />
+            <EmergencySection />
         </>
         
         
