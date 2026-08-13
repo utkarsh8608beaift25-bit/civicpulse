@@ -1,0 +1,40 @@
+.footer {
+  padding: 50px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.brand p {
+  margin: 8px 0 0;
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+}
+
+.links a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.emergency span {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.emergency a {
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
