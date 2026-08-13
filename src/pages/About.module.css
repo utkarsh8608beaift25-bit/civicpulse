@@ -1,0 +1,47 @@
+.page {
+  padding: 80px 8%;
+}
+
+.intro {
+  max-width: 800px;
+  margin-bottom: 60px;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: 52px;
+  line-height: 1.1;
+}
+
+.intro > p:last-child {
+  margin-top: 24px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.card {
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.card p {
+  line-height: 1.6;
+}
