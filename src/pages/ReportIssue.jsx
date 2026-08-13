@@ -22,6 +22,28 @@ function ReportIssue() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    const existingReports = JSON.parse(
+      localStorage.getItem("civicpulseReports") || "[]"
+    );
+
+    const newReport = {
+      id: Date.now(),
+      name: formData.name,
+      category: formData.category,
+      location: formData.location,
+      description: formData.description,
+      status: "Submitted",
+      date: new Date().toLocaleDateString(),
+    };
+
+    const updatedReports = [...existingReports, newReport];
+
+    localStorage.setItem(
+      "civicpulseReports",
+      JSON.stringify(updatedReports)
+    );
+
     setSubmitted(true);
   }
 
