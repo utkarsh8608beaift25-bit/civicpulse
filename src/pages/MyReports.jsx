@@ -1,12 +1,41 @@
 import { useState } from "react";
+import ReportCard from "../components/reports/ReportCard";
 import styles from "./MyReports.module.css";
 
 function MyReports() {
-  const [reports] = useState(() => {
+  const [reports, setReports] = useState(() => {
     const savedReports = localStorage.getItem("civicpulseReports");
 
     return savedReports ? JSON.parse(savedReports) : [];
   });
+
+  function handleStatusChange(reportId, newStatus) {
+    const updatedReports = reports.map((report) =>
+      report.id === reportId
+        ? { ...report, status: newStatus }
+        : report
+    );
+
+    setReports(updatedReports);
+
+    localStorage.setItem(
+      "civicpulseReports",
+      JSON.stringify(updatedReports)
+    );
+  }
+
+  function handleDelete(reportId) {
+    const updatedReports = reports.filter(
+      (report) => report.id !== reportId
+    );
+
+    setReports(updatedReports);
+
+    localStorage.setItem(
+      "civicpulseReports",
+      JSON.stringify(updatedReports)
+    );
+  }
 
   return (
     <section className={styles.page}>
@@ -31,38 +60,12 @@ function MyReports() {
       ) : (
         <div className={styles.reports}>
           {reports.map((report) => (
-            <article className={styles.report} key={report.id}>
-              <div className={styles.reportHeader}>
-                <div>
-                  <span className={styles.category}>
-                    {report.category}
-                  </span>
-
-                  <h2>{report.description}</h2>
-                </div>
-
-                <span className={styles.status}>
-                  {report.status}
-                </span>
-              </div>
-
-              <div className={styles.details}>
-                <p>
-                  <strong>Location</strong>
-                  {report.location}
-                </p>
-
-                <p>
-                  <strong>Submitted by</strong>
-                  {report.name}
-                </p>
-
-                <p>
-                  <strong>Date</strong>
-                  {report.date}
-                </p>
-              </div>
-            </article>
+            <ReportCard
+              key={report.id}
+              report={report}
+              onStatusChange={handleStatusChange}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
       )}
