@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./IssueCategories.module.css";
 
 const categories = [
@@ -49,7 +50,11 @@ function IssueCategories() {
 
       <div className={styles.grid}>
         {categories.map((category) => (
-          <article className={styles.card} key={category.id}>
+          <Link
+            className={styles.card}
+            key={category.id}
+            to={`/report?category=${category.title}`}
+          >
             <span className={styles.number}>
               {String(category.id).padStart(2, "0")}
             </span>
@@ -57,7 +62,7 @@ function IssueCategories() {
             <h3>{category.title}</h3>
 
             <p>{category.description}</p>
-          </article>
+          </Link>
         ))}
       </div>
     </section>

@@ -2,9 +2,12 @@ import { useState } from "react";
 import styles from "./ReportIssue.module.css";
 
 function ReportIssue() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const categoryFromUrl = searchParams.get("category");
+
   const [formData, setFormData] = useState({
     name: "",
-    category: "",
+    category: categoryFromUrl || "",
     location: "",
     description: "",
   });
@@ -91,12 +94,12 @@ function ReportIssue() {
               required
             >
               <option value="">Select a category</option>
-              <option value="roads">Roads</option>
-              <option value="water">Water</option>
-              <option value="electricity">Electricity</option>
-              <option value="cleanliness">Cleanliness</option>
-              <option value="street-lights">Street Lights</option>
-              <option value="public-safety">Public Safety</option>
+              <option value="Roads">Roads</option>
+              <option value="Water">Water</option>
+              <option value="Electricity">Electricity</option>
+              <option value="Cleanliness">Cleanliness</option>
+              <option value="Street Lights">Street Lights</option>
+              <option value="Public Safety">Public Safety</option>
             </select>
           </label>
 
