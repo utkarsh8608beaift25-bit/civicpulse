@@ -18,21 +18,29 @@
 
 .eyebrow {
   margin-bottom: 16px;
-  font-size: 14px;
+
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
+
+  color: #6b7280;
 }
 
 .title {
   margin: 0;
   max-width: 680px;
+
   font-size: clamp(42px, 5vw, 64px);
   line-height: 1.05;
+  letter-spacing: -1.5px;
 }
 
 .description {
   max-width: 580px;
   margin-top: 24px;
+
+  color: #4b5563;
+
   font-size: 18px;
   line-height: 1.6;
 }
@@ -40,7 +48,8 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
+
   margin-top: 32px;
 }
 
@@ -53,9 +62,16 @@
   min-height: 50px;
   padding: 14px 24px;
 
-  border-radius: 8px;
+  border-radius: 10px;
+
   text-decoration: none;
   font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .primaryButton {
@@ -63,9 +79,25 @@
   color: white;
 }
 
+.primaryButton:hover {
+  transform: translateY(-2px);
+
+  background: #1f2937;
+
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.15);
+}
+
 .secondaryButton {
   border: 1px solid #d1d5db;
+  background: white;
   color: #111827;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-2px);
+
+  border-color: #9ca3af;
+  background: #f9fafb;
 }
 
 .visual {
@@ -76,31 +108,70 @@
   display: flex;
   align-items: flex-end;
   justify-self: end;
+
+  transform: translateY(4px);
 }
 
 .visualCard {
   width: 100%;
-  padding: 28px;
-  border-radius: 20px;
-  background: #f3f4f6;
+  padding: 30px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+
+  background: linear-gradient(
+    145deg,
+    #f9fafb,
+    #f3f4f6
+  );
+
+  box-shadow:
+    0 20px 45px rgba(17, 24, 39, 0.08),
+    0 4px 12px rgba(17, 24, 39, 0.04);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.visualCard:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 28px 55px rgba(17, 24, 39, 0.11),
+    0 6px 16px rgba(17, 24, 39, 0.05);
 }
 
 .visualCard span {
   display: block;
+
   margin-bottom: 12px;
-  font-size: 14px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .visualCard strong {
   display: block;
+
   font-size: 28px;
   line-height: 1.2;
+  letter-spacing: -0.5px;
 }
+
+/* TABLET */
 
 @media (max-width: 900px) {
   .hero {
     padding: 70px 6%;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(220px, 300px);
+
     gap: 32px;
   }
 
@@ -111,13 +182,25 @@
   .description {
     font-size: 17px;
   }
+
+  .visualCard {
+    padding: 26px;
+  }
+
+  .visualCard strong {
+    font-size: 25px;
+  }
 }
+
+/* MOBILE */
 
 @media (max-width: 720px) {
   .hero {
     min-height: auto;
     padding: 60px 6%;
+
     grid-template-columns: 1fr;
+
     gap: 44px;
   }
 
@@ -127,6 +210,7 @@
 
   .title {
     font-size: clamp(38px, 11vw, 48px);
+    letter-spacing: -1px;
   }
 
   .description {
@@ -134,14 +218,22 @@
   }
 
   .visual {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  aspect-ratio: auto;
-  justify-self: start;
-  align-items: stretch;
+    width: 100%;
+    max-width: 420px;
+
+    height: auto;
+    aspect-ratio: auto;
+
+    justify-self: start;
+    align-items: stretch;
+  }
+
+  .visualCard:hover {
+    transform: none;
   }
 }
+
+/* SMALL MOBILE */
 
 @media (max-width: 480px) {
   .hero {
@@ -174,6 +266,7 @@
 
   .visualCard {
     padding: 24px;
+    border-radius: 20px;
   }
 
   .visualCard strong {

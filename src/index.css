@@ -12,11 +12,15 @@ body {
   font-family: Arial, sans-serif;
   min-width: 320px;
   overflow-x: hidden;
+
+  background: #ffffff;
+  color: #111827;
+
+  line-height: 1.5;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+a {
+  color: inherit;
 }
 
 button,
@@ -24,4 +28,35 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #111827;
+}
+
+::selection {
+  background: #111827;
+  color: #ffffff;
 }

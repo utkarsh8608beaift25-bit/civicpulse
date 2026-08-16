@@ -12,6 +12,9 @@
 
 .eyebrow {
   margin-bottom: 12px;
+
+  color: #6b7280;
+
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -19,13 +22,18 @@
 
 .heading h1 {
   margin: 0;
+
   font-size: clamp(40px, 5vw, 52px);
   line-height: 1.1;
+  letter-spacing: -1px;
 }
 
 .heading > p:last-child {
   max-width: 650px;
   margin-top: 20px;
+
+  color: #4b5563;
+
   font-size: 18px;
   line-height: 1.6;
 }
@@ -38,8 +46,24 @@
 
 .report {
   padding: 28px;
+
   border: 1px solid #e5e7eb;
   border-radius: 18px;
+
+  background: #ffffff;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.report:hover {
+  transform: translateY(-3px);
+
+  border-color: #d1d5db;
+
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.06);
 }
 
 .reportHeader {
@@ -51,7 +75,11 @@
 
 .category {
   display: inline-block;
+
   margin-bottom: 12px;
+
+  color: #6b7280;
+
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
@@ -61,52 +89,82 @@
 .report h2 {
   margin: 0;
   max-width: 700px;
+
+  color: #111827;
+
   font-size: 22px;
   line-height: 1.3;
+  letter-spacing: -0.3px;
 }
 
 .status {
   flex-shrink: 0;
+
   padding: 7px 12px;
+
+  border: 1px solid #e5e7eb;
   border-radius: 20px;
-  background: #f3f4f6;
+
+  background: #f9fafb;
+  color: #374151;
+
   font-size: 13px;
   font-weight: 600;
 }
 
 .details {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
   gap: 20px;
+
   margin-top: 28px;
   padding-top: 20px;
+
   border-top: 1px solid #e5e7eb;
 }
 
 .details p {
   margin: 0;
+
+  color: #4b5563;
+
   line-height: 1.5;
 }
 
 .details strong {
   display: block;
+
   margin-bottom: 5px;
+
+  color: #111827;
+
   font-size: 13px;
 }
 
 .empty {
   padding: 40px;
+
   border: 1px solid #e5e7eb;
   border-radius: 18px;
+
+  background: #fafafa;
 }
 
 .empty h2 {
   margin: 0;
+
+  color: #111827;
+
+  font-size: 24px;
 }
 
 .empty p {
   margin-top: 10px;
-  line-height: 1.5;
+
+  color: #6b7280;
+
+  line-height: 1.6;
 }
 
 @media (max-width: 700px) {
@@ -128,6 +186,10 @@
 
   .report {
     padding: 24px;
+  }
+
+  .report:hover {
+    transform: translateY(-2px);
   }
 
   .reportHeader {

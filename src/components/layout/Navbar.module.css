@@ -8,14 +8,19 @@
   justify-content: space-between;
 
   position: relative;
+
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .logo {
   flex-shrink: 0;
+
   font-size: 24px;
   font-weight: 800;
+  letter-spacing: -0.5px;
+
   text-decoration: none;
-  color: inherit;
 }
 
 .navlinks {
@@ -30,9 +35,40 @@
 }
 
 .navlink {
+  position: relative;
+
+  padding: 8px 0;
+
+  color: #4b5563;
+
   text-decoration: none;
-  color: inherit;
+  font-size: 15px;
   font-weight: 500;
+
+  transition: color 0.2s ease;
+}
+
+.navlink:hover {
+  color: #111827;
+}
+
+.navlink::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  background: #111827;
+
+  transition: width 0.2s ease;
+}
+
+.navlink:hover::after {
+  width: 100%;
 }
 
 .menuButton {
@@ -67,6 +103,7 @@
 
   .menuButton {
     display: block;
+
     position: relative;
     z-index: 3;
   }
@@ -85,10 +122,12 @@
 
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 8px;
 
-    background: white;
-    border-top: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 
     z-index: 2;
   }
@@ -100,7 +139,22 @@
   .navlink {
     display: block;
     width: 100%;
-    padding: 4px 0;
+
+    padding: 12px 0;
+
+    font-size: 16px;
+  }
+
+  .navlink::after {
+    left: 0;
+    bottom: 4px;
+
+    width: 0;
+    height: 2px;
+  }
+
+  .navlink:hover::after {
+    width: 100%;
   }
 }
 

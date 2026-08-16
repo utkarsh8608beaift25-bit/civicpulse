@@ -13,20 +13,31 @@
 
 .code {
   margin: 0;
+
+  color: #111827;
+
   font-size: clamp(72px, 10vw, 100px);
   font-weight: 800;
   line-height: 1;
+  letter-spacing: -3px;
 }
 
 .page h1 {
   max-width: 700px;
   margin: 24px 0 12px;
+
+  color: #111827;
+
   font-size: clamp(34px, 5vw, 42px);
   line-height: 1.15;
+  letter-spacing: -0.8px;
 }
 
 .page > p:not(.code) {
   max-width: 500px;
+
+  color: #6b7280;
+
   line-height: 1.6;
 }
 
@@ -38,18 +49,36 @@
   margin-top: 28px;
   padding: 14px 24px;
 
-  border-radius: 8px;
+  border-radius: 10px;
+
   background: #111827;
-  color: white;
+  color: #ffffff;
 
   text-decoration: none;
   font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+
+  background: #1f2937;
+
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.15);
 }
 
 @media (max-width: 600px) {
   .page {
     min-height: 55vh;
     padding: 60px 6%;
+  }
+
+  .code {
+    letter-spacing: -2px;
   }
 
   .page h1 {
@@ -65,5 +94,9 @@
 @media (max-width: 400px) {
   .page {
     padding: 50px 5%;
+  }
+
+  .code {
+    font-size: 72px;
   }
 }
