@@ -2,122 +2,69 @@ import { useEffect, useState } from "react";
 import styles from "./CommunityStats.module.css";
 
 const stats = [
-  {
-    id: 1,
-    value: 1250,
-    suffix: "+",
-    label: "Issues Reported",
-  },
-  {
-    id: 2,
-    value: 89,
-    suffix: "%",
-    label: "Resolved Cases",
-  },
-  {
-    id: 3,
-    value: 24,
-    suffix: "/7",
-    label: "Community Support",
-  },
+  [1250, "+", "Issues Reported"],
+  [89, "%", "Resolved Cases"],
+  [24, "/7", "Community Support"],
 ];
 
 function CommunityStats() {
-  const [hasStarted, setHasStarted] = useState(false);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const heading = document.querySelector(
-      `.${styles.heading}`
-    );
+    const heading = document.querySelector(`.${styles.heading}`);
+    if (!heading) return;
 
-    if (!heading) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setHasStarted(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0,
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setStarted(true);
+        observer.disconnect();
       }
-    );
+    });
 
     observer.observe(heading);
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section className={styles.section}>
       <div className={styles.heading}>
         <p className={styles.eyebrow}>COMMUNITY IMPACT</p>
-
         <h2>Every report can make a difference.</h2>
       </div>
 
       <div className={styles.stats}>
-        {stats.map((stat) => (
-          <StatCard
-            key={stat.id}
-            stat={stat}
-            hasStarted={hasStarted}
-          />
+        {stats.map((stat, i) => (
+          <StatCard key={i} stat={stat} started={started} />
         ))}
       </div>
     </section>
   );
 }
 
-function StatCard({ stat, hasStarted }) {
+function StatCard({ stat, started }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!hasStarted) {
-      return;
+    if (!started) return;
+
+    const start = performance.now();
+
+    function animate(time) {
+      const progress = Math.min((time - start) / 1800, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      setCount(Math.floor(eased * stat[0]));
+
+      if (progress < 1) requestAnimationFrame(animate);
     }
 
-    const duration = 1800;
-    const startTime = performance.now();
-
-    function updateCount(currentTime) {
-      const elapsed = currentTime - startTime;
-
-      const progress = Math.min(
-        elapsed / duration,
-        1
-      );
-
-      const easedProgress =
-        1 - Math.pow(1 - progress, 3);
-
-      const currentValue = Math.floor(
-        easedProgress * stat.value
-      );
-
-      setCount(currentValue);
-
-      if (progress < 1) {
-        requestAnimationFrame(updateCount);
-      }
-    }
-
-    requestAnimationFrame(updateCount);
-  }, [hasStarted, stat.value]);
+    requestAnimationFrame(animate);
+  }, [started, stat]);
 
   return (
     <article className={styles.stat}>
-      <strong>
-        {count.toLocaleString()}
-        {stat.suffix}
-      </strong>
-
-      <span>{stat.label}</span>
+      <strong>{count.toLocaleString()}{stat[1]}</strong>
+      <span>{stat[2]}</span>
     </article>
   );
 }

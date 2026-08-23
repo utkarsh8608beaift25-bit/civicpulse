@@ -5,9 +5,7 @@ function Contact() {
     <section className={styles.page}>
       <div className={styles.heading}>
         <p className={styles.eyebrow}>GET IN TOUCH</p>
-
         <h1>We'd love to hear from you.</h1>
-
         <p>
           Have a question, suggestion, or feedback about CivicPulse?
           Reach out to us.

@@ -1,79 +1,63 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+
+const links = [
+  ["Home", "/", true],
+  ["About", "/about"],
+  ["My Reports", "/my-reports"],
+  ["Contact", "/contact"],
+  ["Report Issue", "/report"],
+];
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
 
-  function toggleMenu() {
-    setMenuOpen(!menuOpen);
-  }
+  const navClass = ({ isActive }) =>
+    `${styles.navlink} ${isActive ? styles.active : ""}`;
 
   return (
     <nav className={styles.navbar}>
-      <Link className={styles.logo} to="/">
-        CivicPulse
-      </Link>
+      <div className={styles.brandArea}>
+        <NavLink className={styles.logo} to="/" onClick={closeMenu}>
+          Civic<span>Pulse</span>
+        </NavLink>
+
+        <div className={styles.status}>
+          <span className={styles.statusDot} />
+          <span>Community Active</span>
+        </div>
+      </div>
 
       <button
         className={styles.menuButton}
-        onClick={toggleMenu}
+        onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle navigation menu"
       >
         {menuOpen ? "✕" : "☰"}
       </button>
 
-      <ul className={`${styles.navlinks} ${menuOpen ? styles.open : ""}`}>
-        <li>
-          <Link
-            className={styles.navlink}
-            to="/"
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </Link>
-        </li>
+      <div className={`${styles.navigation} ${menuOpen ? styles.open : ""}`}>
+        <ul className={styles.navlinks}>
+          {links.map(([name, path, end]) => (
+            <li key={path}>
+              <NavLink
+                className={navClass}
+                to={path}
+                end={end}
+                onClick={closeMenu}
+              >
+                {name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-        <li>
-          <Link
-            className={styles.navlink}
-            to="/about"
-            onClick={() => setMenuOpen(false)}
-          >
-            About
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            className={styles.navlink}
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            className={styles.navlink}
-            to="/my-reports"
-            onClick={() => setMenuOpen(false)}
-          >
-            My Reports
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            className={styles.navlink}
-            to="/report"
-            onClick={() => setMenuOpen(false)}
-          >
-            Report Issue
-          </Link>
-        </li>
-      </ul>
+        <a className={styles.email} href="mailto:support@civicpulse.com">
+          support@civicpulse.com
+        </a>
+      </div>
     </nav>
   );
 }

@@ -2,36 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "./IssueCategories.module.css";
 
 const categories = [
-  {
-    id: 1,
-    title: "Roads",
-    description: "Report potholes, damaged roads, and unsafe streets.",
-  },
-  {
-    id: 2,
-    title: "Water",
-    description: "Report leaks, water supply problems, and drainage issues.",
-  },
-  {
-    id: 3,
-    title: "Electricity",
-    description: "Report outages, damaged poles, and electrical hazards.",
-  },
-  {
-    id: 4,
-    title: "Cleanliness",
-    description: "Report garbage, overflowing bins, and sanitation issues.",
-  },
-  {
-    id: 5,
-    title: "Street Lights",
-    description: "Report broken or non-functional street lights.",
-  },
-  {
-    id: 6,
-    title: "Public Safety",
-    description: "Report hazards that could affect community safety.",
-  },
+  ["01", "Roads", "Report potholes, damaged roads, and unsafe streets."],
+  ["02", "Water", "Report leaks, water supply problems, and drainage issues."],
+  ["03", "Electricity", "Report outages, damaged poles, and electrical hazards."],
+  ["04", "Cleanliness", "Report garbage, overflowing bins, and sanitation issues."],
+  ["05", "Street Lights", "Reliable lighting for safer streets and public spaces at night."],
+  ["06", "Public Safety", "Report safety concerns and protect your local community."]
 ];
 
 function IssueCategories() {
@@ -39,9 +15,7 @@ function IssueCategories() {
     <section className={styles.section}>
       <div className={styles.heading}>
         <p className={styles.eyebrow}>WHAT CAN YOU REPORT?</p>
-
         <h2>Make your community heard.</h2>
-
         <p>
           From broken street lights to overflowing garbage bins, report
           everyday civic issues that matter to your community.
@@ -49,19 +23,20 @@ function IssueCategories() {
       </div>
 
       <div className={styles.grid}>
-        {categories.map((category) => (
+        {categories.map(([id, title, description]) => (
           <Link
-            className={styles.card}
-            key={category.id}
-            to={`/report?category=${category.title}`}
+            key={id}
+            className={`${styles.card} ${
+              styles[title.toLowerCase().replace(" ", "")]
+            }`}
+            to={`/report?category=${title}`}
           >
-            <span className={styles.number}>
-              {String(category.id).padStart(2, "0")}
-            </span>
+            <span className={styles.number}>{id}</span>
 
-            <h3>{category.title}</h3>
-
-            <p>{category.description}</p>
+            <div className={styles.cardContent}>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </div>
           </Link>
         ))}
       </div>

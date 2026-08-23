@@ -1,3 +1,14 @@
+:root {
+  --background: #050816;
+  --surface: #0b1024;
+  --surface-light: #111a38;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --text: #f8fafc;
+  --text-muted: #a8b3cf;
+  --border: #1e2a4a;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,18 +20,16 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
   min-width: 320px;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, sans-serif;
   overflow-x: hidden;
-
-  background: #ffffff;
-  color: #111827;
-
-  line-height: 1.5;
 }
 
-a {
-  color: inherit;
+img {
+  max-width: 100%;
+  display: block;
 }
 
 button,
@@ -35,28 +44,54 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
+a,
 button {
-  cursor: pointer;
-}
-
-input,
-textarea,
-select {
-  outline: none;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: #111827;
+  transition:
+    color .2s ease,
+    background-color .2s ease,
+    border-color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
 ::selection {
-  background: #111827;
-  color: #ffffff;
+  background: var(--primary);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .homeReveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+.homeReveal {
+  opacity: 0;
+  transform: translateY(70px) scale(.97);
+  filter: brightness(.6);
+  transition:
+    opacity .8s ease,
+    transform .8s ease,
+    filter .8s ease;
+}
+
+.homeReveal.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: brightness(1);
 }
